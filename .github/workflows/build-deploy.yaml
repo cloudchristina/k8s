@@ -53,4 +53,4 @@ jobs:
           chmod +x kubectl
           sudo mv kubectl /usr/local/bin/
       - name: Apply Kubernetes manifest
-        run: kubectl apply -f k8s/
+        run: kubectl apply -f k8s/ -v=8
