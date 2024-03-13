@@ -1,7 +1,7 @@
 name: Docker Build Deploy
 on:
   push:
-    branches: [master]
+    branches: [main]
   workflow_dispatch:
 env:
   DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
@@ -24,17 +24,17 @@ jobs:
         run: docker build . --file Dockerfile -t "$DOCKER_USERNAME/$PRODUCT_REPO_NAME:latest"
       - name: Push user service docker image
         run: docker push "$DOCKER_USERNAME/$PRODUCT_REPO_NAME:latest"
-deployment:
-    needs: [create-user-image]
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@master
-      - name: kubectl - Google Cloud GKE cluster.
-        uses: ameydev/gke-kubectl-action@master
-        env:
-          PROJECT_ID: ${{ secrets.PROJECT_ID }}
-          APPLICATION_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS }}
-          CLUSTER_NAME: ${{ secrets.CLUSTER_NAME }}
-          ZONE_NAME: us-central1-c
-        with:
-          args: apply -f k8s/
+  deployment:
+      needs: [create-user-image]
+      runs-on: ubuntu-latest
+      steps:
+        - uses: actions/checkout@master
+        - name: kubectl - EKS cluster.
+          uses: ameydev/gke-kubectl-action@master
+          env:
+            PROJECT_ID: ${{ secrets.PROJECT_ID }}
+            APPLICATION_CREDENTIALS: ${{ secrets.AWS_APPLICATION_CREDENTIALS }}
+            CLUSTER_NAME: ${{ secrets.CLUSTER_NAME }}
+            ZONE_NAME: ap-southeast-2
+          with:
+            args: apply -f k8s/
