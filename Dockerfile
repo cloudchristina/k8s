@@ -1,7 +1,10 @@
-FROM node:18-alpine3.14
-RUN npm i -g typescript ts-node
-WORKDIR /app
-COPY . .
-RUN npm install
-EXPOSE 8070
-CMD ["npm", "start"]
+FROM python:3.8-slim-buster
+
+WORKDIR /python-docker
+
+COPY code/requirements.txt requirements.txt
+RUN pip3 install -r requirements.txt
+
+COPY code/. .
+
+CMD [ "python3", "-m" , "flask", "run", "--host=0.0.0.0","--port=8080"]

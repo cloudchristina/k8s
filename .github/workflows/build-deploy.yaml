@@ -9,9 +9,10 @@ permissions:
 env:
   DOCKER_USERNAME: ${{secrets.DOCKER_USERNAME}}
   DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
-  PRODUCT_REPO_NAME: ${{secrets.PRODUCT_REPO_NAME}}
+  PRODUCT_REPO_NAME: rrequero
   EKS_CLUSTER_NAME: cc-k8s
   AWS_REGION: ap-southeast-2
+  DOCKER_IMAGE: flask-app
 jobs:
   create-user-image:
     runs-on: ubuntu-latest
