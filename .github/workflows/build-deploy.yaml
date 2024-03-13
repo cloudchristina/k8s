@@ -42,11 +42,14 @@ jobs:
           role-session-name: GitHub_to_AWS_via_FederatedOIDC
           role-to-assume: arn:aws:iam::544863999112:role/GitHubAction-AssumeRoleWithAction
       # Hello from AWS: WhoAmI
-      # - name: Sts GetCallerIdentity
-      #   run: |
-      #     aws sts get-caller-identity
+      - name: Sts GetCallerIdentity
+        run: |
+          aws sts get-caller-identity
       - name: Update kube config
-        run: aws eks update-kubeconfig --name $EKS_CLUSTER_NAME --region $AWS_REGION
+        run: |
+          aws eks update-kubeconfig --name $EKS_CLUSTER_NAME --region $AWS_REGION
+          kubectl config view --minify
+          kubectl get svc
       # - name: Update kubectl
       #   run: |
       #     curl -LO "https://dl.k8s.io/release/v1.21.0/bin/linux/amd64/kubectl"
