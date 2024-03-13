@@ -1,0 +1,70 @@
+/* Reset default margin and padding */
+html, body, header, main, footer, article, h1, h2, p {
+    margin: 0;
+    padding: 0;
+}
+
+/* Set box-sizing to border-box for all elements */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f0f0f0;
+}
+
+/* Header styles */
+.header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.header h1 {
+    font-size: 24px;
+}
+
+/* Main content styles */
+.content {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Article styles */
+.blog-post {
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.blog-section {
+    margin-bottom: 20px;
+}
+
+.blog-section h2 {
+    color: #333;
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+.blog-section p {
+    color: #666;
+}
+
+/* Footer styles */
+.footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+.footer p {
+    font-size: 14px;
+}
